@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+/* =====================================================================
+   IMAGE CONFIGURATION  —  EDIT THE URLS BELOW TO CHANGE ANY PHOTO
+   ---------------------------------------------------------------------
+   Every image on the page loads from IMAGE_URLS. Replace a URL with any
+   direct image link (it should end in .jpg/.png/.webp, or be an image
+   CDN link such as images.unsplash.com). No other change is needed.
+   IMAGE_POSITIONS (optional) controls the crop focus for each photo:
+   "50% 50%" = centre, "50% 20%" = show more of the top, etc.
+   ===================================================================== */
+const IMAGE_URLS = {
+  majnuKaTila:    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Majnu_ka_tilla_monastery.jpg/960px-Majnu_ka_tilla_monastery.jpg",
+  lodhiGarden:    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/BARA_GUMBA_OF_LODHI_GARDENS_2.jpg/960px-BARA_GUMBA_OF_LODHI_GARDENS_2.jpg",
+  sunderNursery:  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Sunder_Nursery_View_of_Sunder_Burj.jpg/960px-Sunder_Nursery_View_of_Sunder_Burj.jpg",
+  connaughtPlace: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Central_Park,_Connaught_Place_(view_from_Parikarma_restaurant).jpg/960px-Central_Park,_Connaught_Place_(view_from_Parikarma_restaurant).jpg",
+  /* STAND-IN: no Hudson Lane photo could be found. This is a cafe interior in India (Unsplash). Replace with a real Hudson Lane photo. */
+  hudsonLane:     "https://images.unsplash.com/photo-1611902169148-857ebcf717b9?auto=format&fit=crop&w=1000&q=70",
+  indiaGate:      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/India_gate_new_delhi.jpg/960px-India_gate_new_delhi.jpg",
+  other:          "https://images.unsplash.com/photo-1575397282820-f72467c262e5?auto=format&fit=crop&w=1000&q=70",
+  hero:           "https://images.unsplash.com/photo-1604881990409-b9f246db39da?auto=format&fit=crop&w=1400&q=75"
+};
+const IMAGE_POSITIONS = {
+  majnuKaTila: "50% 50%", lodhiGarden: "50% 35%", sunderNursery: "50% 55%",
+  connaughtPlace: "50% 50%", hudsonLane: "50% 50%", indiaGate: "50% 55%",
+  other: "50% 50%", hero: "50% 50%"
+};
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f1e9">
+<title>Our Little Date Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f1e9;--ink:#29231f;--muted:#81776e;--wine:#783b46;--wine2:#9b5961;--line:#e5dbcf;--white:#fffdf9;--sage:#77816d;--shadow:0 18px 55px #38261b12}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.shell{max-width:1120px;margin:auto;padding:0 22px 70px}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.brand{font-family:"Playfair Display",serif;font-size:20px;letter-spacing:0;color:var(--wine);text-transform:none}.topbar .edition{font-size:10px}.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center;padding:54px 0 62px}.eyebrow{font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--wine);font-weight:700}.hero h1{font:600 clamp(42px,6vw,76px)/1.04 "Playfair Display",serif;letter-spacing:-.04em;margin:18px 0}.hero h1 em{color:var(--wine);font-weight:500}.hero p{max-width:440px;color:var(--muted);font-size:15px;line-height:1.8}.hero-photo{height:420px;border-radius:4px 110px 4px 4px;overflow:hidden;position:relative;box-shadow:var(--shadow)}.hero-photo img{width:100%;height:100%;object-fit:cover}.photo-note{position:absolute;bottom:18px;left:18px;background:#fffdf0e8;padding:12px 16px;font:italic 15px "Playfair Display",serif;color:var(--wine)}.progress-wrap{position:sticky;top:0;background:var(--paper);z-index:5;padding:14px 0 12px;border-bottom:1px solid var(--line)}.progress-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px}.progress{height:3px;background:#e6ddd2}.progress span{display:block;height:100%;width:20%;background:var(--wine);transition:width .3s}.form-layout{display:grid;grid-template-columns:230px 1fr;gap:48px;padding-top:42px}.side-note{position:sticky;top:90px;align-self:start}.side-note h3{font:500 24px "Playfair Display",serif;margin:0 0 12px}.side-note p{font-size:13px;line-height:1.8;color:var(--muted)}.side-note .tiny{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--wine)}.step{display:none;animation:rise .35s ease}.step.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.step-head{margin-bottom:28px}.step-head .num{color:var(--wine);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}.step-head h2{font:600 clamp(30px,4vw,43px)/1.12 "Playfair Display",serif;margin:10px 0}.step-head p{color:var(--muted);font-size:14px;line-height:1.7;margin:0}.field{margin:24px 0}.field label,.field-title{display:block;font-size:13px;font-weight:700;margin-bottom:10px}.hint{font-size:12px;color:var(--muted);font-weight:400;margin-left:5px}.text-input,textarea,select{width:100%;border:1px solid var(--line);background:var(--white);padding:15px 16px;border-radius:2px;color:var(--ink);outline:none}.text-input:focus,textarea:focus,select:focus{border-color:var(--wine)}textarea{min-height:95px;resize:vertical}.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice label{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 15px;border:1px solid var(--line);background:var(--white);min-height:52px;font-size:13px;font-weight:500;cursor:pointer;transition:.2s}.choice label:after{content:"+";color:var(--wine);font-size:18px;font-weight:400}.choice input:checked+label{border-color:var(--wine);background:#f0e5e2;color:var(--wine)}.choice input:checked+label:after{content:"✓";font-weight:700}.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.place{position:relative;border:1px solid var(--line);background:var(--white);padding:0;text-align:left;overflow:hidden;min-width:0}.place input{position:absolute;opacity:0}.place img{display:block;width:100%;height:148px;object-fit:cover;transition:transform .35s}.place:hover img{transform:scale(1.04)}.place-copy{display:flex;justify-content:space-between;align-items:center;padding:12px 13px;gap:8px}.place-copy strong{font:600 17px "Playfair Display",serif}.place-copy small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.place-mark{border:1px solid var(--line);width:22px;height:22px;display:grid;place-items:center;color:var(--wine);font-size:12px;flex:none}.place input:checked~.place-copy{background:#f0e5e2;color:var(--wine)}.place input:checked~.place-copy .place-mark{background:var(--wine);color:white;border-color:var(--wine)}.other-place{margin-top:12px}.calendar{border:1px solid var(--line);background:var(--white);padding:18px}.cal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.cal-top strong{font:600 20px "Playfair Display",serif}.cal-nav{display:flex;gap:8px}.cal-nav button{border:1px solid var(--line);background:transparent;width:34px;height:34px;color:var(--wine)}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}.cal-grid .dayname{font-size:10px;color:var(--muted);padding:7px 0}.cal-day{border:0;background:transparent;min-height:38px;color:var(--ink);font-size:12px}.cal-day:disabled{color:#c9c0b6;cursor:not-allowed}.cal-day.selected{background:var(--wine);color:white;border-radius:50%}.selected-dates{font-size:12px;color:var(--muted);margin-top:13px;line-height:1.7}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}.divider{border:0;border-top:1px solid var(--line);margin:30px 0}.nav{display:flex;justify-content:space-between;gap:12px;margin-top:38px}.btn{border:1px solid var(--wine);padding:14px 22px;background:var(--wine);color:white;font-size:12px;letter-spacing:.08em;text-transform:uppercase;min-width:132px}.btn:hover{background:#5d2c35}.btn.secondary{background:transparent;color:var(--wine)}.btn.secondary:hover{background:#eee4dc}.btn:disabled{opacity:.4;cursor:not-allowed}.review{background:var(--white);border:1px solid var(--line);padding:20px;line-height:1.8;font-size:13px}.review h3{font:600 21px "Playfair Display",serif;color:var(--wine);margin:15px 0 4px}.review p{margin:0;color:var(--muted);white-space:pre-wrap}.success{display:none;text-align:center;padding:70px 20px}.success h2{font:600 48px "Playfair Display",serif;color:var(--wine)}.success p{color:var(--muted);line-height:1.8}.footer{border-top:1px solid var(--line);margin-top:65px;padding-top:20px;display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.footer span:last-child{font-family:"Playfair Display",serif;font-style:italic;color:var(--wine)}.error{display:none;color:#a33131;font-size:12px;margin-top:8px}.required{color:var(--wine)}@media(max-width:760px){.shell{padding:0 17px 45px}.topbar{height:62px}.topbar .edition{display:none}.hero{grid-template-columns:1fr;gap:22px;padding:36px 0 35px}.hero h1{font-size:50px;max-width:440px}.hero-photo{height:270px;border-radius:4px 75px 4px 4px}.form-layout{grid-template-columns:1fr;gap:12px;padding-top:28px}.side-note{display:none}.progress-wrap{margin:0 -17px;padding:12px 17px}.photo-grid{gap:10px}.place img{height:118px}.place-copy{padding:10px}.place-copy strong{font-size:15px}.choice-grid{gap:8px}.choice label{padding:12px;font-size:12px}.step-head h2{font-size:34px}.two-col{grid-template-columns:1fr}.btn{min-width:0;flex:1;padding:14px 12px}.footer{margin-top:42px}.cal-day{min-height:36px}}@media(min-width:761px){.photo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.photo-fallback{display:grid;place-items:center;width:100%;height:100%;background:#e9dfd2;color:var(--wine);font:italic 16px "Playfair Display",serif;text-align:center;padding:12px}.place .photo-fallback{height:148px}@media(max-width:760px){.place .photo-fallback{height:118px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar"><div class="brand">a little date plan</div><div class="edition">A tiny plan for a lovely day · Delhi edition</div></header>
+<section class="hero">
+  <div><div class="eyebrow">A little something for us</div><h1>Our little<br><em>date plan.</em></h1><p>Pick the places, little things and dates that sound lovely to you. No pressure, no fixed plan — just a day made of things we both enjoy.</p></div>
+  <div class="hero-photo"><img data-img="hero" data-label="A day worth remembering" alt="Two people holding hands across a cafe table" decoding="async"><div class="photo-note">Let's make a day of it.</div></div>
+</section>
+<div class="progress-wrap"><div class="progress-meta"><span id="progressLabel">01 / 05 · The basics</span><span id="progressPercent">20%</span></div><div class="progress"><span id="progressBar"></span></div></div>
+<div class="form-layout">
+<aside class="side-note"><h3>Thoughtfully planned, never over-planned.</h3><p>Choose as many options as you like. This is just a little way to find a date that feels like you.</p><div class="tiny">Made with a little extra care<br>New Delhi · India</div></aside>
+<main>
+<form id="dateForm">
+<section class="step active" data-step="0">
+<div class="step-head"><div class="num">01 — The basics</div><h2>Let's start with you.</h2><p>A few little details before we get to the fun part.</p></div>
+<div class="field"><label for="guestName">What should I call you? <span class="required">*</span></label><input class="text-input" id="guestName" name="Her name" placeholder="Your name or favourite nickname" required></div>
+<div class="field"><label>What kind of date are you in the mood for?</label><div class="choice-grid">
+<div class="choice"><input type="radio" id="mood1" name="Date mood" value="Cute and cosy"><label for="mood1">Cute & cosy</label></div>
+<div class="choice"><input type="radio" id="mood2" name="Date mood" value="Explore somewhere new"><label for="mood2">Explore somewhere new</label></div>
+<div class="choice"><input type="radio" id="mood3" name="Date mood" value="A little adventure"><label for="mood3">A little adventure</label></div>
+<div class="choice"><input type="radio" id="mood4" name="Date mood" value="Slow and peaceful"><label for="mood4">Slow & peaceful</label></div>
+</div></div>
+<div class="field"><label>How long should we keep aside?</label><div class="choice-grid">
+<div class="choice"><input type="radio" id="dur1" name="Duration" value="1–2 hours"><label for="dur1">1–2 hours</label></div>
+<div class="choice"><input type="radio" id="dur2" name="Duration" value="A relaxed half-day"><label for="dur2">A relaxed half-day</label></div>
+<div class="choice"><input type="radio" id="dur3" name="Duration" value="Most of the day"><label for="dur3">Most of the day</label></div>
+<div class="choice"><input type="radio" id="dur4" name="Duration" value="Let's see where it goes"><label for="dur4">Let's see where it goes</label></div>
+</div></div>
+</section>
+<section class="step" data-step="1">
+<div class="step-head"><div class="num">02 — The places</div><h2>Where shall we go?</h2><p>Choose one or more places. We can always combine nearby ideas or decide together later.</p></div>
+<div class="photo-grid">
+<label class="place"><input type="checkbox" name="Locations" value="Majnu Ka Tila"><img data-img="majnuKaTila" data-label="Majnu Ka Tila" alt="Tibetan monastery in Majnu Ka Tila, Delhi" loading="lazy" decoding="async"><span class="place-copy"><span><strong>Majnu Ka Tila</strong><small>Cafés, little lanes & food</small></span><span class="place-mark">+</span></span></label>
+<label class="place"><input type="checkbox" name="Locations" value="Lodhi Garden"><img data-img="lodhiGarden" data-label="Lodhi Garden" alt="Bara Gumbad tomb in Lodhi Garden, Delhi" loading="lazy" decoding="async"><span class="place-copy"><span><strong>Lodhi Garden</strong><small>Green paths & quiet walks</small></span><span class="place-mark">+</span></span></label>
+<label class="place"><input type="checkbox" name="Locations" value="Sunder Nursery"><img data-img="sunderNursery" data-label="Sunder Nursery" alt="Sunder Burj tomb and gardens at Sunder Nursery, Delhi" loading="lazy" decoding="async"><span class="place-copy"><span><strong>Sunder Nursery</strong><small>Gardens, heritage & photos</small></span><span class="place-mark">+</span></span></label>
+<label class="place"><input type="checkbox" name="Locations" value="Connaught Place"><img data-img="connaughtPlace" data-label="Connaught Place" alt="Central Park at Connaught Place, Delhi" loading="lazy" decoding="async"><span class="place-copy"><span><strong>Connaught Place</strong><small>Cafés, shopping & city lights</small></span><span class="place-mark">+</span></span></label>
+<label class="place"><input type="checkbox" name="Locations" value="Hudson Lane"><img data-img="hudsonLane" data-label="Hudson Lane" alt="Cafe interior (stand-in for Hudson Lane)" loading="lazy" decoding="async"><span class="place-copy"><span><strong>Hudson Lane</strong><small>Food spots & a lively vibe</small></span><span class="place-mark">+</span></span></label>
+<label class="place"><input type="checkbox" name="Locations" value="India Gate"><img data-img="indiaGate" data-label="India Gate" alt="India Gate, New Delhi" loading="lazy" decoding="async"><span class="place-copy"><span><strong>India Gate</strong><small>Evening stroll & city breeze</small></span><span class="place-mark">+</span></span></label>
+<label class="place"><input type="checkbox" name="Locations" value="Other"><img data-img="other" data-label="Somewhere lovely" alt="Couple on a cafe date" loading="lazy" decoding="async"><span class="place-copy"><span><strong>Somewhere else</strong><small>You have another idea?</small></span><span class="place-mark">+</span></span></label>
+</div>
+<div class="field other-place"><label for="customPlace">Any other place in mind? <span class="hint">Optional</span></label><input class="text-input" id="customPlace" name="Other place suggestion" placeholder="Tell me the place…"></div>
+<div class="field"><label>What would you like to do there?</label><div class="choice-grid">
+<div class="choice"><input type="checkbox" id="act1" name="Activities" value="Walk and talk"><label for="act1">Walk & talk</label></div>
+<div class="choice"><input type="checkbox" id="act2" name="Activities" value="Try a café"><label for="act2">Try a café</label></div>
+<div class="choice"><input type="checkbox" id="act3" name="Activities" value="Explore and take photos"><label for="act3">Explore & take photos</label></div>
+<div class="choice"><input type="checkbox" id="act4" name="Activities" value="Shopping"><label for="act4">A little shopping</label></div>
+<div class="choice"><input type="checkbox" id="act5" name="Activities" value="Movie"><label for="act5">Watch a movie</label></div>
+<div class="choice"><input type="checkbox" id="act6" name="Activities" value="Games or something fun"><label for="act6">Games / something fun</label></div>
+<div class="choice"><input type="checkbox" id="act7" name="Activities" value="Just sit and talk"><label for="act7">Sit & talk</label></div>
+<div class="choice"><input type="checkbox" id="act8" name="Activities" value="Surprise me"><label for="act8">Surprise me</label></div>
+</div></div>
+</section>
+<section class="step" data-step="2">
+<div class="step-head"><div class="num">03 — Little preferences</div><h2>The little details.</h2><p>Food, drinks and all the small things that make a day feel just right.</p></div>
+<div class="field"><label>What sounds good to eat?</label><div class="choice-grid">
+<div class="choice"><input type="checkbox" id="food1" name="Food" value="Tibetan / Asian"><label for="food1">Tibetan / Asian</label></div>
+<div class="choice"><input type="checkbox" id="food2" name="Food" value="Italian"><label for="food2">Italian</label></div>
+<div class="choice"><input type="checkbox" id="food3" name="Food" value="North Indian"><label for="food3">North Indian</label></div>
+<div class="choice"><input type="checkbox" id="food4" name="Food" value="Street food"><label for="food4">Street food</label></div>
+<div class="choice"><input type="checkbox" id="food5" name="Food" value="Desserts and bakery"><label for="food5">Desserts & bakery</label></div>
+<div class="choice"><input type="checkbox" id="food6" name="Food" value="Anything vegetarian"><label for="food6">Vegetarian</label></div>
+<div class="choice"><input type="checkbox" id="food7" name="Food" value="Anything is fine"><label for="food7">Anything is fine</label></div>
+<div class="choice"><input type="checkbox" id="food8" name="Food" value="No food plan"><label for="food8">No food plan needed</label></div>
+</div></div>
+<div class="two-col">
+<div class="field"><label for="drink">A drink of choice?</label><select id="drink" name="Drink"><option value="">Choose one</option><option>Coffee</option><option>Tea</option><option>Cold coffee</option><option>Bubble tea</option><option>Juice / mocktail</option><option>Water is perfect</option><option>Surprise me</option></select></div>
+<div class="field"><label for="sweet">Dessert preference?</label><select id="sweet" name="Dessert"><option value="">Choose one</option><option>Chocolate</option><option>Ice cream</option><option>Waffles / pancakes</option><option>Cake / pastry</option><option>Not really a dessert person</option><option>Surprise me</option></select></div>
+</div>
+<div class="field"><label for="diet">Any dietary preferences, allergies or food we should avoid?</label><input class="text-input" id="diet" name="Dietary notes" placeholder="Optional — let me know"></div>
+</section>
+<section class="step" data-step="3">
+<div class="step-head"><div class="num">04 — Pick a date</div><h2>When are you free?</h2><p>Tap every date that could work for you. We’ll choose the final one together.</p></div>
+<div class="field"><div class="field-title">Select your available dates <span class="hint">You can choose more than one</span></div><div class="calendar"><div class="cal-top"><strong id="monthTitle"></strong><div class="cal-nav"><button type="button" id="prevMonth" aria-label="Previous month">‹</button><button type="button" id="nextMonth" aria-label="Next month">›</button></div></div><div class="cal-grid" id="calendarGrid"></div></div><div class="selected-dates" id="selectedDates">No dates selected yet.</div><div class="error" id="dateError">Please choose at least one date that works for you.</div></div>
+<div class="field"><label for="dateFlex">How flexible are you?</label><select id="dateFlex" name="Date flexibility"><option value="">Choose one</option><option>These dates only, please</option><option>Mostly flexible</option><option>Very flexible — let's decide together</option></select></div>
+<div class="field"><label for="special">Anything you'd especially love to do or see?</label><textarea id="special" name="Special request" placeholder="A little wish, a place you've wanted to visit, or anything else…"></textarea></div>
+</section>
+<section class="step" data-step="4">
+<div class="step-head"><div class="num">05 — One last look</div><h2>Our little plan, so far.</h2><p>Have a look at your choices. You can go back and change anything before submitting.</p></div>
+<div class="field"><div class="review" id="reviewBox"></div></div>
+<div class="field"><label class="choice" style="display:block"><input type="checkbox" id="consent" required><span style="display:flex;gap:10px;align-items:flex-start;background:var(--white);border:1px solid var(--line);padding:14px;font-size:12px;line-height:1.6"><span>I’m happy to share these answers so we can plan our date together.</span></span></label></div>
+<div class="error" id="submitError">Something went wrong. Please try again, or check your internet connection.</div>
+<p style="font-size:11px;color:var(--muted);line-height:1.7">Your answers will be sent privately to the email address configured by the person who made this page.</p>
+</section>
+<div class="nav" id="navButtons"><button type="button" class="btn secondary" id="backBtn" disabled>← Back</button><button type="button" class="btn" id="nextBtn">Continue →</button></div>
+</form>
+<div class="success" id="successScreen"><div class="eyebrow">Sent with care</div><h2>That's lovely.</h2><p>Your little date ideas have been sent.<br>Now it's time to plan something nice together.</p><div style="font:italic 18px 'Playfair Display';color:var(--wine);margin-top:25px">Until our date ♡</div></div>
+</main>
+</div>
+<section style="margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:10px;line-height:1.8;color:var(--muted)"><strong style="font-weight:600;color:var(--wine)">Photo sources</strong> · Destination photos are from Wikimedia Commons (various contributors, under Creative Commons licences; credits are on each file's Commons page). Date-mood photos are from Unsplash (Priscilla Du Preez, Jeff Finley, Shreyas Gupta). All image links can be changed in the IMAGE_URLS list at the top of this file.</section>
+<footer class="footer"><span>OUR LITTLE DATE PLAN · DELHI</span><span>Made for a day worth remembering.</span></footer>
+</div>
+<script>
+/* IMPORTANT: Replace this with the recipient's email before publishing. */
+const RECIPIENT_EMAIL = "mokshbhardwaj2452007@gmail.com";
+const form = document.getElementById("dateForm");
+const steps = [...document.querySelectorAll(".step")];
+const labels = ["The basics","The places","Little preferences","Pick a date","Review"];
+let current = 0;
+const chosenDates = new Set();
+let shownMonth = new Date(); shownMonth.setDate(1);
+const pad = n => String(n).padStart(2,"0");
+const dateKey = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+function updateStep(){
+  steps.forEach((s,i)=>s.classList.toggle("active",i===current));
+  document.getElementById("backBtn").disabled=current===0;
+  document.getElementById("nextBtn").textContent=current===4?"Submit":"Continue →";
+  document.getElementById("progressLabel").textContent=`0${current+1} / 05 · ${labels[current]}`;
+  document.getElementById("progressPercent").textContent=`${(current+1)*20}%`;
+  document.getElementById("progressBar").style.width=`${(current+1)*20}%`;
+  if(current===4) buildReview();
+  window.scrollTo({top:document.querySelector(".progress-wrap").offsetTop,behavior:"smooth"});
+}
+function renderCalendar(){
+  const grid=document.getElementById("calendarGrid"); grid.innerHTML="";
+  document.getElementById("monthTitle").textContent=shownMonth.toLocaleDateString("en-IN",{month:"long",year:"numeric"});
+  ["S","M","T","W","T","F","S"].forEach(x=>{const el=document.createElement("div");el.className="dayname";el.textContent=x;grid.append(el)});
+  const first=new Date(shownMonth.getFullYear(),shownMonth.getMonth(),1);
+  const offset=first.getDay(); const days=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,0).getDate();
+  for(let i=0;i<offset;i++){grid.append(document.createElement("div"))}
+  const today=new Date();today.setHours(0,0,0,0);
+  for(let day=1;day<=days;day++){
+    const date=new Date(shownMonth.getFullYear(),shownMonth.getMonth(),day);
+    const b=document.createElement("button");b.type="button";b.className="cal-day";b.textContent=day;
+    if(date<today)b.disabled=true;
+    if(chosenDates.has(dateKey(date)))b.classList.add("selected");
+    b.addEventListener("click",()=>{const key=dateKey(date);chosenDates.has(key)?chosenDates.delete(key):chosenDates.add(key);renderCalendar()});
+    grid.append(b);
+  }
+  const sorted=[...chosenDates].sort();
+  document.getElementById("selectedDates").textContent=sorted.length?`Your available dates: ${sorted.map(x=>new Date(x+"T12:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})).join(" · ")}`:"No dates selected yet.";
+}
+document.getElementById("prevMonth").onclick=()=>{const now=new Date();now.setDate(1);if(shownMonth>now){shownMonth.setMonth(shownMonth.getMonth()-1);renderCalendar()}};
+document.getElementById("nextMonth").onclick=()=>{shownMonth.setMonth(shownMonth.getMonth()+1);renderCalendar()};
+function values(name){return [...form.querySelectorAll(`[name="${name}"]:checked`)].map(x=>x.value)}
+function val(name){const el=form.querySelector(`[name="${name}"]:checked`);return el?el.value:""}
+function fieldValue(id){return document.getElementById(id).value.trim()}
+function buildReview(){
+ const sections=[
+ ["About",`Name: ${fieldValue("guestName")||"—"}\nMood: ${val("Date mood")||"—"}\nDuration: ${val("Duration")||"—"}`],
+ ["Places & plans",`Locations: ${values("Locations").join(", ")||"—"}\nOther place: ${fieldValue("customPlace")||"—"}\nActivities: ${values("Activities").join(", ")||"—"}`],
+ ["Little preferences",`Food: ${values("Food").join(", ")||"—"}\nDrink: ${fieldValue("drink")||"—"}\nDessert: ${fieldValue("sweet")||"—"}\nDietary notes: ${fieldValue("diet")||"—"}`],
+ ["Availability & notes",`Dates: ${[...chosenDates].sort().join(", ")||"—"}\nFlexibility: ${fieldValue("dateFlex")||"—"}\nSpecial request: ${fieldValue("special")||"—"}`]
+ ];
+ document.getElementById("reviewBox").innerHTML=sections.map(([h,t])=>`<h3>${h}</h3><p>${escapeHtml(t)}</p>`).join("");
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function validateStep(){
+ if(current===0&&!fieldValue("guestName")){document.getElementById("guestName").focus();return false}
+ if(current===1&&!values("Locations").length){alert("Choose at least one place you'd like to visit.");return false}
+ if(current===3&&!chosenDates.size){document.getElementById("dateError").style.display="block";return false}
+ if(current===4&&!document.getElementById("consent").checked){alert("Please tick the confirmation before submitting.");return false}
+ return true;
+}
+document.getElementById("backBtn").onclick=()=>{if(current>0){current--;updateStep()}};
+document.getElementById("nextBtn").onclick=async()=>{
+ if(!validateStep())return;
+ if(current<4){current++;updateStep();return}
+ await submitAnswers();
+};
+async function submitAnswers(){
+ const btn=document.getElementById("nextBtn");btn.disabled=true;btn.textContent="Sending…";
+ const data=new FormData(form);
+ data.delete("Locations");data.delete("Activities");data.delete("Food");
+ data.append("Locations",values("Locations").join(", "));
+ data.append("Activities",values("Activities").join(", "));
+ data.append("Food",values("Food").join(", "));
+ data.append("Available dates",[...chosenDates].sort().join(", "));
+ data.append("_subject",`Our Little Date Plan — ${fieldValue("guestName")}`);
+ data.append("_template","table");data.append("_captcha","false");
+ try{
+   if(RECIPIENT_EMAIL==="YOUR_EMAIL@example.com")throw new Error("Set recipient email in the source code first.");
+   const response=await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(RECIPIENT_EMAIL)}`,{method:"POST",body:data,headers:{"Accept":"application/json"}});
+   const result=await response.json();
+   if(!response.ok||result.success===false)throw new Error(result.message||"Submission failed");
+   form.style.display="none";document.getElementById("successScreen").style.display="block";document.getElementById("navButtons").style.display="none";
+ }catch(err){
+   const e=document.getElementById("submitError");e.textContent=err.message==="Set recipient email in the source code first."?err.message:"Could not send right now. Please try again in a moment.";e.style.display="block";
+   btn.disabled=false;btn.textContent="Submit";
+ }
+}
+
+/* Image loader: every <img data-img="key"> gets its URL from IMAGE_URLS (top of file). */
+document.querySelectorAll("img[data-img]").forEach(img=>{
+  const key=img.dataset.img, url=(typeof IMAGE_URLS!=="undefined"&&IMAGE_URLS[key])||"";
+  const fail=()=>{
+    console.warn(`Image "${key}" failed to load. Replace IMAGE_URLS.${key} with a working direct image URL.`);
+    const f=document.createElement("div");f.className="photo-fallback";f.textContent=img.dataset.label||"";img.replaceWith(f);
+  };
+  if(!url||/PASTE_IMAGE_URL_HERE/.test(url)){fail();return}
+  img.style.objectPosition=(typeof IMAGE_POSITIONS!=="undefined"&&IMAGE_POSITIONS[key])||"50% 50%";
+  img.referrerPolicy="no-referrer";
+  img.addEventListener("error",fail,{once:true});
+  img.src=url;
+});
+
+renderCalendar();
+</script>
+</body>
+</html>
