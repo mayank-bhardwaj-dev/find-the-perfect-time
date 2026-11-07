@@ -131,8 +131,8 @@ const IMAGE_POSITIONS = {
 <footer class="footer"><span>OUR LITTLE DATE PLAN · DELHI</span><span>Made for a day worth remembering.</span></footer>
 </div>
 <script>
-/* IMPORTANT: Replace this with the recipient's email before publishing. */
-const RECIPIENT_EMAIL = "mokshbhardwaj2452007@gmail.com";
+/* Web3Forms access key: answers are emailed to the address this key was created for. */
+const WEB3FORMS_KEY = "34ee23c7-ddea-4755-b052-9a003ed2230d";
 const form = document.getElementById("dateForm");
 const steps = [...document.querySelectorAll(".step")];
 const labels = ["The basics","The places","Little preferences","Pick a date","Review"];
@@ -205,16 +205,17 @@ async function submitAnswers(){
  data.append("Activities",values("Activities").join(", "));
  data.append("Food",values("Food").join(", "));
  data.append("Available dates",[...chosenDates].sort().join(", "));
- data.append("_subject",`Our Little Date Plan — ${fieldValue("guestName")}`);
- data.append("_template","table");data.append("_captcha","false");
+ data.append("access_key",WEB3FORMS_KEY);
+ data.append("subject",`Our Little Date Plan — ${fieldValue("guestName")}`);
+ data.append("from_name","Our Little Date Plan");
  try{
-   if(RECIPIENT_EMAIL==="YOUR_EMAIL@example.com")throw new Error("Set recipient email in the source code first.");
-   const response=await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(RECIPIENT_EMAIL)}`,{method:"POST",body:data,headers:{"Accept":"application/json"}});
+   if(!WEB3FORMS_KEY)throw new Error("Set recipient email in the source code first.");
+   const response=await fetch("https://api.web3forms.com/submit",{method:"POST",body:data,headers:{"Accept":"application/json"}});
    const result=await response.json();
-   if(!response.ok||result.success===false)throw new Error(result.message||"Submission failed");
+   if(!response.ok||result.success===false||result.success==="false")throw new Error(result.message||"Submission failed");
    form.style.display="none";document.getElementById("successScreen").style.display="block";document.getElementById("navButtons").style.display="none";
  }catch(err){
-   const e=document.getElementById("submitError");e.textContent=err.message==="Set recipient email in the source code first."?err.message:"Could not send right now. Please try again in a moment.";e.style.display="block";
+   const e=document.getElementById("submitError");e.textContent=err.message==="Set recipient email in the source code first."?err.message:"Could not send right now. Reason: "+err.message;console.error("Submit error:",err);e.style.display="block";
    btn.disabled=false;btn.textContent="Submit";
  }
 }
